@@ -7,7 +7,7 @@ spring:
     gateway:
       routes:
         - id: kafka-service
-#          uri: http://localhost:8080
+          #          uri: http://localhost:8080
           uri: lb://KAFKA-SERVICE
           predicates:
             - Path=/kafka-service/**
@@ -24,3 +24,23 @@ eureka:
   instance:
     preferIpAddress: true
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: always
+    info:
+      enabled: true
+
+info:
+  app:
+    name: Api Gateway
+    description: This service is responsible for routing the requests to the appropriate services
+    version: 1.0.0
+  company:
+    name: Radhakrishna
+    contact:
+      email: amit.verma@radhakrishna.com
